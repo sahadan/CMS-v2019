@@ -1,0 +1,23 @@
+create table userTable
+(
+ userId                                   number primary key,
+ firstName                                          VARCHAR2(20),
+ lastName                                       VARCHAR2(20),
+ username                                      VARCHAR2(20),
+ password                                        VARCHAR2(20),
+ email                                           VARCHAR2(20),
+ phone                                            VARCHAR2(20),
+ jobRole                                            VARCHAR2(20)
+);
+
+create sequence user_seq start with 1;
+
+CREATE OR REPLACE TRIGGER trg_user
+  2   BEFORE INSERT ON userTable
+  3   FOR EACH ROW
+  4   BEGIN
+  5   SELECT user_seq.NEXTVAL
+  6   INTO :new.userId
+  7   FROM dual;
+  8   END;
+  9    /
